@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gubers",
+  "info": {
+    "singularName": "guber",
+    "pluralName": "gubers",
+    "displayName": "Guber",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "histories": {
+      "displayName": "HistoryItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "history.history-item"
+    },
+    "periods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::period.period"
+    },
+    "service": {
+      "type": "string",
+      "unique": true
+    },
+    "rank": {
+      "type": "string",
+      "unique": false
+    }
+  }
+}

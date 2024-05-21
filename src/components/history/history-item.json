@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_history_history_items",
+  "info": {
+    "displayName": "HistoryItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "integer",
+      "required": true
+    },
+    "text": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports",
+  "info": {
+    "singularName": "report",
+    "pluralName": "reports",
+    "displayName": "Report",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "pages": {
+      "type": "integer"
+    },
+    "text_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::text-type.text-type"
+    },
+    "output": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "contents": {
+      "displayName": "Contents",
+      "type": "component",
+      "repeatable": true,
+      "component": "content.contents"
+    },
+    "source": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::source.source"
+    },
+    "periods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::period.period"
+    }
+  }
+}

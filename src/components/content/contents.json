@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_content_contents",
+  "info": {
+    "displayName": "Contents",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "pageNumber": {
+      "type": "integer",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
