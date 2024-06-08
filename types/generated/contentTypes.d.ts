@@ -800,17 +800,23 @@ export interface ApiGuberGuber extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
-    description: Attribute.String;
-    img: Attribute.Media;
-    histories: Attribute.Component<'history.history-item', true>;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    description: Attribute.String & Attribute.Required;
+    img: Attribute.Media & Attribute.Required;
+    histories: Attribute.Component<'history.history-item', true> &
+      Attribute.Required;
     periods: Attribute.Relation<
       'api::guber.guber',
       'oneToMany',
       'api::period.period'
     >;
-    service: Attribute.String & Attribute.Unique;
-    rank: Attribute.String;
+    service: Attribute.String & Attribute.Required & Attribute.Unique;
+    rank: Attribute.String & Attribute.Required;
+    reports: Attribute.Relation<
+      'api::guber.guber',
+      'oneToMany',
+      'api::report.report'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -841,7 +847,7 @@ export interface ApiPeriodPeriod extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    value: Attribute.String & Attribute.Unique;
+    value: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -873,14 +879,14 @@ export interface ApiReportReport extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    pages: Attribute.Integer;
+    pages: Attribute.Integer & Attribute.Required;
     text_type: Attribute.Relation<
       'api::report.report',
       'oneToOne',
       'api::text-type.text-type'
     >;
-    output: Attribute.String;
-    img: Attribute.Media;
+    output: Attribute.String & Attribute.Required;
+    img: Attribute.Media & Attribute.Required;
     description: Attribute.String;
     file: Attribute.Media & Attribute.Required;
     contents: Attribute.Component<'content.contents', true>;
@@ -894,6 +900,13 @@ export interface ApiReportReport extends Schema.CollectionType {
       'oneToMany',
       'api::period.period'
     >;
+    guber: Attribute.Relation<
+      'api::report.report',
+      'manyToOne',
+      'api::guber.guber'
+    >;
+    fileSecond: Attribute.Media;
+    contentsSecond: Attribute.Component<'content.contents', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -918,12 +931,13 @@ export interface ApiSourceSource extends Schema.CollectionType {
     singularName: 'source';
     pluralName: 'sources';
     displayName: 'Source';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String & Attribute.Unique;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

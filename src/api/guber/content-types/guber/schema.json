@@ -13,15 +13,18 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "img": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
@@ -30,7 +33,8 @@
       "displayName": "HistoryItem",
       "type": "component",
       "repeatable": true,
-      "component": "history.history-item"
+      "component": "history.history-item",
+      "required": true
     },
     "periods": {
       "type": "relation",
@@ -39,11 +43,19 @@
     },
     "service": {
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true
     },
     "rank": {
       "type": "string",
-      "unique": false
+      "unique": false,
+      "required": true
+    },
+    "reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::report.report",
+      "mappedBy": "guber"
     }
   }
 }

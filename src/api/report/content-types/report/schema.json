@@ -18,7 +18,8 @@
       "required": true
     },
     "pages": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "text_type": {
       "type": "relation",
@@ -26,12 +27,13 @@
       "target": "api::text-type.text-type"
     },
     "output": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "img": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
@@ -51,7 +53,8 @@
       "displayName": "Contents",
       "type": "component",
       "repeatable": true,
-      "component": "content.contents"
+      "component": "content.contents",
+      "required": false
     },
     "source": {
       "type": "relation",
@@ -62,6 +65,25 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::period.period"
+    },
+    "guber": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guber.guber",
+      "inversedBy": "reports"
+    },
+    "fileSecond": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "contentsSecond": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.contents"
     }
   }
 }
