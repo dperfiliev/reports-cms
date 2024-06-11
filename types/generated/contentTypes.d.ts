@@ -888,7 +888,7 @@ export interface ApiReportReport extends Schema.CollectionType {
     output: Attribute.String & Attribute.Required;
     img: Attribute.Media & Attribute.Required;
     description: Attribute.String;
-    file: Attribute.Media & Attribute.Required;
+    file: Attribute.Media;
     contents: Attribute.Component<'content.contents', true>;
     source: Attribute.Relation<
       'api::report.report',
